@@ -58,6 +58,7 @@ export default function* rootSaga() {
     officesSagas.getCompanyRequestWatcher(),
     officesSagas.getCompanyRegistrationWatcher(),
     officesSagas.registerCompanyWatcher(),
+    officesSagas.getAddressLLMWatcher(),
 
     //REGISTRIES
     registriesSagas.getOfficialUserRegistryEntriesWatcher(),

@@ -22,9 +22,15 @@ const selectorIsLoading = createSelector(
   (reducer) => reducer.loading,
 );
 
+const selectorAddressLLMBalance = createSelector(
+  officesReducer,
+  (reducer) => reducer.addressLLMBalance,
+);
+
 export {
   selectorIdentity,
   selectorCompanyRequest,
   selectorCompanyRegistration,
   selectorIsLoading,
+  selectorAddressLLMBalance,
 };

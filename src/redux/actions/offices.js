@@ -6,6 +6,7 @@ export const {
   getCompanyRequest,
   getCompanyRegistration,
   registerCompany,
+  getAddressLlm,
 } = createActions({
   OFFICE_GET_IDENTITY: {
     call: undefined,
@@ -28,6 +29,11 @@ export const {
     failure: undefined,
   },
   REGISTER_COMPANY: {
+    call: undefined,
+    success: undefined,
+    failure: undefined,
+  },
+  GET_ADDRESS_LLM: {
     call: undefined,
     success: undefined,
     failure: undefined,

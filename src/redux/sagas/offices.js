@@ -11,6 +11,7 @@ import {
 } from '../../api/nodeRpcCall';
 
 import { officesActions, blockchainActions } from '../actions';
+import { getAddressLLM } from '../../api/backend';
 
 // WORKERS
 
@@ -79,6 +80,16 @@ function* registerCompanyworker(action) {
   }
 }
 
+function* getAddressLLMWorker(action) {
+  try {
+    const llmBalance = yield call(getAddressLLM, action.payload.walletAddress);
+    yield put(officesActions.getAddressLlm.success({ llmBalance }));
+  } catch (e) {
+    console.log(e)
+    yield put(officesActions.getAddressLlm.failure(e));
+  }
+}
+
 // WATCHERS
 
 function* getIdentityWatcher() {
@@ -121,7 +132,18 @@ function* registerCompanyWatcher() {
   }
 }
 
+
+function* getAddressLLMWatcher() {
+  try {
+    yield takeLatest(officesActions.getAddressLlm.call, getAddressLLMWorker);
+  } catch (e) {
+    console.log(e)
+    yield put(officesActions.getAddressLlm.failure(e));
+  }
+}
+
 export {
+  getAddressLLMWatcher,
   getIdentityWatcher,
   provideJudgementWatcher,
   getCompanyRequestWatcher,

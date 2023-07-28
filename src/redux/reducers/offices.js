@@ -9,6 +9,7 @@ const initialState = {
   companyRegistration: null,
   isGetCompanyRegistration: null,
   loading: false,
+  addressLLMBalance: null,
 };
 
 const officesReducer = handleActions({
@@ -18,6 +19,7 @@ const officesReducer = handleActions({
     officesActions.getCompanyRegistration.call,
     officesActions.registerCompany.call,
     officesActions.provideJudgement.call,
+    officesActions.getAddressLlm.call,
   )]: (state) => ({
     ...state,
     loading: true,
@@ -28,14 +30,24 @@ const officesReducer = handleActions({
     officesActions.getCompanyRegistration.success,
     officesActions.registerCompany.success,
     officesActions.provideJudgement.success,
+    officesActions.getAddressLlm.success,
     officesActions.officeGetIdentity.failure,
     officesActions.getCompanyRequest.failure,
     officesActions.getCompanyRegistration.failure,
     officesActions.registerCompany.failure,
     officesActions.provideJudgement.failure,
+    officesActions.getAddressLlm.failure,
   )]: (state) => ({
     ...state,
     loading: false,
+  }),
+  [officesActions.getAddressLlm.call]: (state) => ({
+    ...state,
+    addressLLMBalance: null,
+  }),
+  [officesActions.getAddressLlm.success]: (state, action) => ({
+    ...state,
+    addressLLMBalance: action.payload.llmBalance,
   }),
   [officesActions.officeGetIdentity.call]: (state, action) => ({
     ...state,

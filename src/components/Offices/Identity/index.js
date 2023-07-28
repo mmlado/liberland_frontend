@@ -21,6 +21,7 @@ function IdentityForm() {
   const onSubmit = ({ account }) => {
     dispatch(blockchainActions.getCurrentBlockNumber.call());
     dispatch(officesActions.officeGetIdentity.call(account));
+    dispatch(officesActions.getAddressLlm.call({ walletAddress: account }));
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -115,6 +116,33 @@ function IdentityAnalysis({ identity }) {
   );
 }
 
+function TokenTable({ llmBalance }) {
+  return (
+    <Table
+      columns={[
+        {
+          Header: "User balance in centralized database",
+          accessor: "desc",
+        },
+        {
+          Header: "",
+          accessor: "res"
+        }
+      ]}
+      data={[
+        {
+          "desc": "LLM balance",
+          "res": llmBalance ? Number(llmBalance)/ 10**12 : null,
+        },
+        {
+          "desc": "LLD balance",
+          "res": llmBalance ? Number(llmBalance)/ 10**11 : null,
+        },
+      ]}
+    />
+  );
+}
+
 function parseData(d) {
   if (d.isNone) return <em>&lt;empty&gt;</em>;
   if (!d.isRaw) return <em>&lt;unsupported type - not None nor Raw&gt;</em>;
@@ -154,7 +182,7 @@ function IdentityTable({ info }) {
   return <Table columns={columns} data={data} />;
 }
 
-function IdentityInfo({ identity }) {
+function IdentityInfo({ identity, llmBalance }) {
   const dispatch = useDispatch();
   const sender = useSelector(blockchainSelectors.userWalletAddressSelector);
   if (identity === null) return null;
@@ -184,6 +212,7 @@ function IdentityInfo({ identity }) {
         <div className={styles.h4}>Candidate's identity:</div>
         <IdentityTable info={info} />
         <IdentityAnalysis identity={identity} />
+        <TokenTable llmBalance={llmBalance} />
         <div className={styles.h4}>Current status:</div>
         <div>
           Current judgement: {judgement}
@@ -205,10 +234,12 @@ function IdentityInfo({ identity }) {
 
 function Identity() {
   const identity = useSelector(officesSelectors.selectorIdentity);
+  const llmBalance = useSelector(officesSelectors.selectorAddressLLMBalance);
+  
   return (
     <>
       <IdentityForm />
-      <IdentityInfo identity={identity} />
+      <IdentityInfo identity={identity} llmBalance={llmBalance}/>
     </>
   );
 }
