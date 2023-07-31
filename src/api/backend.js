@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ethers } from "ethers";
 
-export const getApi = () => {
+const getApi = () => {
   const ssoAccessTokenHash = sessionStorage.getItem("ssoAccessTokenHash");
 
   const api = axios.create({
