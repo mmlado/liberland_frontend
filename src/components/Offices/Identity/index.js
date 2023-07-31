@@ -10,6 +10,7 @@ import { officesActions, blockchainActions } from '../../../redux/actions';
 import { officesSelectors, blockchainSelectors } from '../../../redux/selectors';
 import styles from './styles.module.scss';
 import Table from "../../Table";
+import { ethers } from 'ethers';
 
 function IdentityForm() {
   const dispatch = useDispatch();
@@ -132,11 +133,11 @@ function TokenTable({ llmBalance }) {
       data={[
         {
           "desc": "LLM balance",
-          "res": llmBalance ? Number(llmBalance)/ 10**12 : null,
+          "res": llmBalance ? ethers.utils.formatUnits(llmBalance, 12) : null,
         },
         {
           "desc": "LLD balance",
-          "res": llmBalance ? Number(llmBalance)/ 10**11 : null,
+          "res": llmBalance ?  ethers.utils.formatUnits(llmBalance.mul(10), 12) : null,
         },
       ]}
     />
