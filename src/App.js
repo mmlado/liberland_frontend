@@ -1,14 +1,17 @@
 // LIBS
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { 
+  useSelector, 
+  useDispatch 
+} from 'react-redux';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Redirect,
+  Navigate,
 } from 'react-router-dom';
 import MoonLoader from 'react-spinners/MoonLoader';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 // ROUTER
 import routes from './router';
@@ -43,20 +46,20 @@ function App() {
 
   const loggedOutRoutes = (
     <Router>
-      <Switch>
-        <Route path={routes.signIn} component={SignIn} />
-        <Route path={routes.signUp} component={SignUp} />
-        <Route path="*" render={() => <Redirect to={routes.signIn} />} />
-      </Switch>
+      <Routes>
+        <Route path={routes.signIn} element={<SignIn />} />
+        <Route path={routes.signUp} element={<SignUp />} />
+        <Route path="*" element={<Navigate to={routes.signIn} />} />
+      </Routes>
     </Router>
   );
 
   const loggedInRoutes = (
     <Router>
-      <Switch>
-        <Route path={routes.home.index} component={Home} />
-        <Route path="*" render={() => <Redirect to={routes.home.index} />} />
-      </Switch>
+      <Routes>
+        <Route path={routes.home.index} element={<Home />} />
+        <Route path="*" element={<Navigate to={routes.home.index} />} />
+      </Routes>
     </Router>
   );
 

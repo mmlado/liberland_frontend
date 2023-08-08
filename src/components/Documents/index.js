@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import RoleHOC from '../../hocs/RoleHOC';
 import router from '../../router';
 import Profile from '../Profile';
@@ -33,7 +33,7 @@ function Documents() {
       <Tabs navigationList={navigationList} />
 
       <div>
-        <Switch>
+        <Route>
           <Route
             path={router.documents.myAccount}
             component={() => <Profile className={styles.withoutMargin} />}
@@ -55,11 +55,11 @@ function Documents() {
             path={router.home.documents}
             render={() => (
               <RoleHOC>
-                <Redirect to={router.documents.myAccount} />
+                <Navigate to={router.documents.myAccount} />
               </RoleHOC>
             )}
           />
-        </Switch>
+        </Route>
       </div>
     </div>
   );

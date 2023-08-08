@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Redirect, Route, Switch, useHistory,
+  Navigate, Route, useNavigate,
 } from 'react-router-dom';
 import routes from '../../router';
 
@@ -27,9 +27,9 @@ function Wallet() {
   const transactionHistory = useSelector(walletSelectors.selectorHistoryTx);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
-  const redirectToViewAllTx = () => {
+  const NavigateToViewAllTx = () => {
     history.push(routes.wallet.allTransactions);
   };
 
@@ -45,7 +45,7 @@ function Wallet() {
         <div className={styles.walletWrapper}>
           <WalletAddressesLine walletAddress={userWalletAddress} />
           <div>
-            <Switch>
+            <Route>
               <Route
                 path={router.wallet.ethBridge}
                 component={() => (
@@ -71,7 +71,7 @@ function Wallet() {
                     <WalletTransactionHistory
                       transactionHistory={transactionHistory}
                       textForBtn="View All Transactions"
-                      bottomButtonOnclick={redirectToViewAllTx}
+                      bottomButtonOnclick={NavigateToViewAllTx}
                     />
                   </div>
                 )}
@@ -81,11 +81,11 @@ function Wallet() {
                 path={router.home.wallet}
                 render={() => (
                   <RoleHOC>
-                    <Redirect to={router.wallet.overView} />
+                    <Navigate to={router.wallet.overView} />
                   </RoleHOC>
                 )}
               />
-            </Switch>
+            </Route>
           </div>
         </div>
       ) : (

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Switch, Route, Redirect,
+  Route, Navigate,
 } from 'react-router-dom';
 
 import OfficesHeader from './OfficesHeader';
@@ -19,7 +19,7 @@ function Offices() {
       </div>
 
       <div>
-        <Switch>
+        <Route>
           <Route
             exact
             path={router.offices.identity}
@@ -34,7 +34,7 @@ function Offices() {
             exact
             path={router.home.offices}
             render={() => (
-              <Redirect to={router.offices.identity} />
+              <Navigate to={router.offices.identity} />
             )}
           />
           <Route
@@ -42,7 +42,7 @@ function Offices() {
             path={router.offices.landRegistry}
             component={LandRegistry}
           />
-        </Switch>
+        </Route>
       </div>
     </div>
   );

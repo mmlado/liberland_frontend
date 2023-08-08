@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Switch, Route, Redirect,
+  Route, Navigate,
 } from 'react-router-dom';
 import router from '../../router';
 
@@ -21,7 +21,7 @@ function Registries() {
         <RegistriesHeader />
       </div>
       <div>
-        <Switch>
+        <Route>
           <Route
             exact
             path={router.registries.overview}
@@ -52,7 +52,7 @@ function Registries() {
             path={router.registries.other}
             component={RegistriesOther}
           />
-        </Switch>
+        </Route>
       </div>
     </div>
   )

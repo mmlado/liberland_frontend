@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useDropdown from '../../../hooks/useDropdown';
 import { authActions } from '../../../redux/actions';
 import { userSelectors } from '../../../redux/selectors';
@@ -34,7 +34,7 @@ function HomeHeader() {
     [router.wallet.ethBridgeWithdraw]: 'Ethereum Bridge',
   };
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const location = useLocation();
   const [
     isOpen, toggleDropdown, dropdown, trigger,

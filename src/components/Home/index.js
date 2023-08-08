@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 
 import router from '../../router';
 import HomeHeader from './HomeHeader';
@@ -23,7 +23,7 @@ function Home() {
         <HomeNavigation />
         <div className={styles.homeMain}>
           <HomeHeader />
-          <Switch>
+          <Route>
             <Route path={router.home.profile} component={Profile} />
             <Route path={router.home.feed} component={Feed} />
             <Route path={router.home.documents} component={Documents} />
@@ -39,11 +39,11 @@ function Home() {
               path={router.home.index}
               render={() => (
                 <RoleHOC>
-                  <Redirect to={router.home.feed} />
+                  <Navigate to={router.home.feed} />
                 </RoleHOC>
               )}
             />
-          </Switch>
+          </Route>
         </div>
       </div>
     </div>

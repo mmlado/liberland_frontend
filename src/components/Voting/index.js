@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Switch, Route, Redirect,
+  Route, Navigate,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -33,7 +33,7 @@ function Voting() {
       </div>
 
       <div>
-        <Switch>
+        <Route>
           <Route
             exact
             path={router.voting.congressionalAssemble}
@@ -48,11 +48,11 @@ function Voting() {
             path={router.home.voting}
             render={() => (
               <RoleHOC>
-                <Redirect to={router.voting.congressionalAssemble} />
+                <Navigate to={router.voting.congressionalAssemble} />
               </RoleHOC>
             )}
           />
-        </Switch>
+        </Route>
       </div>
     </div>
   );

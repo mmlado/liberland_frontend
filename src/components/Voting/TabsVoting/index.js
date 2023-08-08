@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import router from '../../../router';
 import CongressionalAssemble from '../CongressionalAssemble';
 import RoleHOC from '../../../hocs/RoleHOC';
@@ -7,7 +7,7 @@ import RoleHOC from '../../../hocs/RoleHOC';
 function TabsVoting() {
   return (
     <div>
-      <Switch>
+      <Route>
         <Route
           path={router.voting.congressionalAssemble}
           component={() => <CongressionalAssemble title="Congressional assembly" />}
@@ -21,11 +21,11 @@ function TabsVoting() {
           path={router.home.voting}
           render={() => (
             <RoleHOC>
-              <Redirect to={router.voting.congressionalAssemble} />
+              <Navigate to={router.voting.congressionalAssemble} />
             </RoleHOC>
           )}
         />
-      </Switch>
+      </Route>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // REDUX
 import { authActions } from '../../../redux/actions';
@@ -29,7 +29,7 @@ function SignIn() {
     watch,
   } = useForm();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const apiError = useSelector(errorsSelectors.selectSignIn);
   const allAccounts = useSelector(blockchainSelectors.allWalletsSelector);
   const queryString = window.location.hash;
@@ -92,7 +92,7 @@ function SignIn() {
         </p>
         <form className={styles.signInForm} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.inputWrapper}>
-            <select className={styles.addressSwitcher} {...register('wallet_address')} required>
+            <select className={styles.addressRouteer} {...register('wallet_address')} required>
               { allAccounts.map((el) => (
                 <option key={el.address} value={el.address}>{el.address}</option>
               ))}

@@ -24,7 +24,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     {
       loader: require.resolve('postcss-loader'),
       options: {
-        ident: 'postcss',
+        // ident: 'postcss',
         postcssOptions: {
           plugins: () => [
             require('postcss-flexbugs-fixes'),

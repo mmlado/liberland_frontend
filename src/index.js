@@ -21,13 +21,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <DAppProvider config={etherConfig}>
     <ApolloProvider client={client}>
       <Provider store={store}>
         <App />
       </Provider>
     </ApolloProvider>
-  </DAppProvider>,
-  document.getElementById('root'),
+  </DAppProvider>
 );
