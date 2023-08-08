@@ -100,14 +100,24 @@ const bridgeWithdraw = async ({ receipt_id, asset }, walletAddress, callback) =>
   });
 }
 
-const bridgeWithdrawalDelay = async (asset) => {
+const bridgeMinTransfer = async (asset) => {
   const api = await getApi();
   let bridge;
   if (asset == "LLM") bridge = api.consts.ethLLMBridge;
   else if (asset == "LLD") bridge = api.consts.ethLLDBridge;
   else throw new Exception("Unknown asset");
 
-  return bridge.withdrawalDelay;
+  return bridge.minTransfer;
+}
+
+const bridgeConstants = async (asset) => {
+  const api = await getApi();
+  let bridge;
+  if (asset == "LLM") bridge = api.consts.ethLLMBridge;
+  else if (asset == "LLD") bridge = api.consts.ethLLDBridge;
+  else throw new Exception("Unknown asset");
+
+  return bridge;
 }
 
 const provideJudgement = async ({ address, hash, walletAddress }, callback) => {
@@ -1269,5 +1279,5 @@ export {
   bridgeSubscribe,
   bridgeDeposit,
   getBlockEvents,
-  bridgeWithdrawalDelay,
+  bridgeConstants,
 };
