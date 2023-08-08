@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useEthers } from '@usedapp/core';
-import { Navigate, Route } from 'react-router-dom';
+import { 
+  Navigate, 
+  Route, 
+  Routes 
+} from 'react-router-dom';
 import Card from '../../Card';
 import Connect from './Connect';
 import EthereumToSubstrate from './EthereumToSubstrate';
@@ -59,7 +63,7 @@ function Bridge() {
       </Card>
       <Card className={styles.bridgeWrapper} title="Bridge">
         <div>
-          <Route>
+          <Routes>
             <Route
               exact
               path={router.wallet.ethBridgeWithdraw}
@@ -77,7 +81,7 @@ function Bridge() {
                 <Navigate to={router.wallet.ethBridgeDeposit} />
               )}
             />
-          </Route>
+          </Routes>
         </div>
       </Card>
     </>

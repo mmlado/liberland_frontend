@@ -1,5 +1,9 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { 
+  Route, 
+  Routes, 
+  Navigate
+} from 'react-router-dom';
 import RoleHOC from '../../hocs/RoleHOC';
 import router from '../../router';
 import Profile from '../Profile';
@@ -33,7 +37,7 @@ function Documents() {
       <Tabs navigationList={navigationList} />
 
       <div>
-        <Route>
+        <Routes>
           <Route
             path={router.documents.myAccount}
             component={() => <Profile className={styles.withoutMargin} />}
@@ -59,7 +63,7 @@ function Documents() {
               </RoleHOC>
             )}
           />
-        </Route>
+        </Routes>
       </div>
     </div>
   );

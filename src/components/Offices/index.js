@@ -1,6 +1,8 @@
 import React from 'react';
 import {
-  Route, Navigate,
+  Route, 
+  Routes, 
+  Navigate,
 } from 'react-router-dom';
 
 import OfficesHeader from './OfficesHeader';
@@ -19,7 +21,7 @@ function Offices() {
       </div>
 
       <div>
-        <Route>
+        <Routes>
           <Route
             exact
             path={router.offices.identity}
@@ -42,7 +44,7 @@ function Offices() {
             path={router.offices.landRegistry}
             component={LandRegistry}
           />
-        </Route>
+        </Routes>
       </div>
     </div>
   );

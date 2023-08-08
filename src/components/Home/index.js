@@ -1,5 +1,9 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { 
+  Route, 
+  Routes, 
+  Navigate 
+} from 'react-router-dom';
 
 import router from '../../router';
 import HomeHeader from './HomeHeader';
@@ -23,7 +27,7 @@ function Home() {
         <HomeNavigation />
         <div className={styles.homeMain}>
           <HomeHeader />
-          <Route>
+          <Routes>
             <Route path={router.home.profile} component={Profile} />
             <Route path={router.home.feed} component={Feed} />
             <Route path={router.home.documents} component={Documents} />
@@ -43,7 +47,7 @@ function Home() {
                 </RoleHOC>
               )}
             />
-          </Route>
+          </Routes>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import {
-  Route, Navigate,
+  Route, 
+  Routes, 
+  Navigate,
 } from 'react-router-dom';
 
 import LegislationHeader from './LegislationHeader';
@@ -17,7 +19,7 @@ function Legislation() {
       </div>
 
       <div>
-        <Route>
+        <Routes>
           <Route
             exact
             path={router.legislation.view}
@@ -30,7 +32,7 @@ function Legislation() {
               <Navigate to={`${router.home.legislation}/0`} />
             )}
           />
-        </Route>
+        </Routes>
       </div>
     </div>
   );

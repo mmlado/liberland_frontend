@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import {
-  Route, Navigate,
+  Route, 
+  Routes, 
+  Navigate,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -33,7 +35,7 @@ function Voting() {
       </div>
 
       <div>
-        <Route>
+        <Routes>
           <Route
             exact
             path={router.voting.congressionalAssemble}
@@ -52,7 +54,7 @@ function Voting() {
               </RoleHOC>
             )}
           />
-        </Route>
+        </Routes>
       </div>
     </div>
   );
